@@ -5,56 +5,56 @@
     <!-- Torso -->
     <link name="torso_link">
         <visual>
-            <xacro:default_geometry cad_file="BPF-CHEST-F"/>
+            <default_geometry cad_file="BPF-CHEST-F"/>
             <origin rpy="${pi/2} 0 ${pi/2}"/>
         </visual>
         <visual>
-            <xacro:default_geometry cad_file="BPF-CHEST-B"/>
+            <default_geometry cad_file="BPF-CHEST-B"/>
             <origin rpy="${pi/2} 0 ${pi/2}"/>
         </visual>
         <visual>
-            <xacro:default_geometry cad_file="CM-5"/>
+            <default_geometry cad_file="CM-5"/>
             <origin xyz="-0.032 0 -0.015" rpy="0 ${pi} ${pi/2}"/>
         </visual>
         <!-- Sensor 100 -->
         <visual>
-            <xacro:default_geometry cad_file="AX-S1"/>
+            <default_geometry cad_file="AX-S1"/>
             <origin xyz="0 0 0.025" rpy="${-pi/2} 0 ${-pi/2}"/>
         </visual>
         <!-- Motor 1 -->
         <visual>
-            <xacro:default_geometry cad_file="AX-12"/>
+            <default_geometry cad_file="AX-12"/>
             <origin xyz="0 -0.032 0" rpy="${pi/2} 0 0"/>
         </visual>
         <visual>
-            <xacro:default_geometry cad_file="FP04-F3"/>
+            <default_geometry cad_file="FP04-F3"/>
             <origin xyz="-0.019 -0.032 -0.0145" rpy="${pi} ${-pi/2} ${pi/2}"/>
         </visual>
         <!-- Motor 2 -->
         <visual>
-            <xacro:default_geometry cad_file="AX-12"/>
+            <default_geometry cad_file="AX-12"/>
             <origin xyz="0 0.032 0" rpy="${pi/2} 0 ${pi}"/>
         </visual>
         <visual>
-            <xacro:default_geometry cad_file="FP04-F3"/>
+            <default_geometry cad_file="FP04-F3"/>
             <origin xyz="-0.019 0.032 -0.0145" rpy="${pi} ${-pi/2} ${pi/2}"/>
         </visual>        
         <visual>
-            <xacro:default_geometry cad_file="FP04-F3"/>
+            <default_geometry cad_file="FP04-F3"/>
             <origin xyz="0.0175 0 -0.0655" rpy="0 0 ${pi/2}"/>
         </visual>
         <visual>
-            <xacro:default_geometry cad_file="FP04-F3"/>
+            <default_geometry cad_file="FP04-F3"/>
             <origin xyz="-0.0175 0 -0.0655" rpy="0 0 ${-pi/2}"/>
         </visual>
         <!-- Motor 7 -->
         <visual>
-            <xacro:default_geometry cad_file="AX-12"/>
+            <default_geometry cad_file="AX-12"/>
             <origin xyz="0 -0.0385 -0.0655" rpy="0 ${pi} ${pi}"/>
         </visual>
         <!-- Motor 8 -->
         <visual>
-            <xacro:default_geometry cad_file="AX-12"/>
+            <default_geometry cad_file="AX-12"/>
             <origin xyz="0 0.0385 -0.0655" rpy="0 ${pi} 0"/>
         </visual>
         <collision name="head_collision">
@@ -85,7 +85,7 @@
     <!-- Right foot -->
     <link name="r_foot_link">
         <visual>
-            <xacro:default_geometry cad_file="FP04-F12"/>
+            <default_geometry cad_file="FP04-F12"/>
             <origin xyz="0.0235 0 0" rpy="0 ${pi/2} ${-pi/2}"/>
         </visual>
         <collision name="r_foot_collision">
@@ -104,7 +104,7 @@
     <!-- Left foot -->
     <link name="l_foot_link">
         <visual>
-            <xacro:default_geometry cad_file="FP04-F12"/>
+            <default_geometry cad_file="FP04-F12"/>
             <origin xyz="-0.0235 0 0" rpy="${pi} ${pi/2} ${-pi/2}"/>
         </visual>
         <collision name="l_foot_collision">
