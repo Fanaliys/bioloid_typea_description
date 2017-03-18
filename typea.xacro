@@ -1,10 +1,27 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="typea">
 
+	<!-- Import mass property (inertia) -->
+	<xacro:include filename="$(find bioloid_typea_description)/inertia/Torso.xacro"/>
+	<xacro:include filename="$(find bioloid_typea_description)/inertia/F1.xacro"/>
+	<xacro:include filename="$(find bioloid_typea_description)/inertia/F5.xacro"/>
+	<xacro:include filename="$(find bioloid_typea_description)/inertia/F12.xacro"/>
+	<xacro:include filename="$(find bioloid_typea_description)/inertia/F11.xacro"/>
+	<xacro:include filename="$(find bioloid_typea_description)/inertia/upperarm.xacro"/>
+	<xacro:include filename="$(find bioloid_typea_description)/inertia/upperleg.xacro"/>
+	<xacro:include filename="$(find bioloid_typea_description)/inertia/L_Foot.xacro"/>
+	<xacro:include filename="$(find bioloid_typea_description)/inertia/R_Foot.xacro"/>
+	<xacro:include filename="$(find bioloid_typea_description)/inertia/L_lowerarm.xacro"/>
+	<xacro:include filename="$(find bioloid_typea_description)/inertia/R_lowerarm.xacro"/>
+	<xacro:include filename="$(find bioloid_typea_description)/inertia/L_Tibia.xacro"/>
+	<xacro:include filename="$(find bioloid_typea_description)/inertia/R_Tibia.xacro"/>
+	<xacro:include filename="$(find bioloid_typea_description)/inertia/L_hip-R_ankle.xacro"/>
+	<xacro:include filename="$(find bioloid_typea_description)/inertia/R_hip-L_ankle.xacro"/>
+
     <!-- Import gazebo_ros_control plugin -->
     <xacro:include filename="$(find bioloid_typea_description)/gazebo.xacro" ns="gazebo"/>
 
-    <xacro:property name="pi" value="3.14159"/>
+    <!--  <xacro:property name="pi" value="3.14159"/> -->
     <xacro:property name="cad_dir" value="file://$(find bioloid_typea_description)/assets/cad"/>
 
     <!-- Typically, STL/DAE model units are in mm, but RViz units are in m, hence models must be scaled down by 1000. -->
@@ -152,7 +169,7 @@
     </xacro:macro>
 
     <!-- Links MACRO -->
-    <xacro:macro name="hip_lateral_link" params="prefix reflect x_offset y_offset z_offset">
+    <xacro:macro name="hip_lateral_link" params="prefix reflect x_offset y_offset z_offset *inertial">
     <link name="${prefix}_hip_lateral_link">
         <!-- Motor 9[r] 10[l] -->
         <visual>
@@ -186,11 +203,14 @@
                 <box size="0.04 0.051 0.0721"/>
             </geometry>
         </collision>
+        <xacro:insert_block name="inertial" />
+        <!--
         <inertial>
             <origin xyz="0.000079 0.018242 0.013873" />
             <mass value="0.11904336"/>
             <inertia ixx="0.097950272"  ixy="0.0012119368"  ixz="-0.00021223016" iyx="0.00122119368" iyy="0.032848287" iyz="-0.0019474021" izx="-0.00021223016" izy="-0.0019474021" izz="0.11493509" />
         </inertial>
+        -->
     </link>
     </xacro:macro>
 
@@ -206,11 +226,14 @@
                 <box size="0.029 0.083 0.0405"/>
             </geometry>
         </collision>
+        <xacro:hip_twist_inertial/>
+        <!--
         <inertial>
             <origin xyz="0.000000 0.000480 0.018437" />
             <mass value="0.167"/>
             <inertia ixx="0.12259691"  ixy="0.00071127469"  ixz="0.00081143913" iyx="0.00071127469" iyy="0.11066637" iyz="-0.0071635476" izx="0.00081143913" izy="-0.0071635476" izz="0.041877668" />
         </inertial>
+        -->
     </link>
     </xacro:macro>
 
@@ -236,15 +259,18 @@
                 <box size="0.04 0.0371 0.049"/>
             </geometry>
         </collision>
+        <xacro:upperleg_inertial/>
+        <!--
         <inertial>
             <origin xyz="-0.062965 -0.000323 0.000692" />
             <mass value="0.11904336"/>
             <inertia ixx="0.097950272"  ixy="0.0012119368"  ixz="-0.00021223016" iyx="0.00122119368" iyy="0.032848287" iyz="-0.0019474021" izx="-0.00021223016" izy="-0.0019474021" izz="0.11493509" />
         </inertial>
+        -->
     </link>
     </xacro:macro>
 
-    <xacro:macro name="lower_leg_link" params="prefix reflect x_offset y_offset z_offset">
+    <xacro:macro name="lower_leg_link" params="prefix reflect x_offset y_offset z_offset *inertial">
     <link name="${prefix}_lower_leg_link">
         <!-- Motor 13[r] 14[l] -->
         <visual>
@@ -271,15 +297,18 @@
                 <box size="0.067 0.03 0.049"/>
             </geometry>
         </collision>
+        <xacro:insert_block name="inertial" />
+        <!--
         <inertial>
             <origin xyz="-0.053955 0.006548 -0.000592" />
             <mass value="0.070309794"/>
             <inertia ixx="0.093369608"  ixy="-0.00093567395"  ixz="-0.00023992085" iyx="-0.00093567395" iyy="0.046295534" iyz="-0.012858493" izx="-0.00023992085" izy="-0.012858493" izz="0.11351516" />
         </inertial>
+        -->
     </link>
     </xacro:macro>
 
-    <xacro:macro name="ankle_swing_link" params="prefix reflect x_offset y_offset z_offset">
+    <xacro:macro name="ankle_swing_link" params="prefix reflect x_offset y_offset z_offset *inertial">
     <link name="${prefix}_ankle_swing_link">
         <!-- Motor 15[r] 16[l] -->
         <visual>
@@ -309,15 +338,18 @@
                 <box size="0.051 0.0721 0.04"/>
             </geometry>
         </collision>
+        <xacro:insert_block name="inertial" />
+        <!--
         <inertial>
             <origin xyz="-0.000214 -0.018536 0.013873" />
             <mass value="0.16710792"/>
             <inertia ixx="0.12079175"  ixy="-0.00079781067"  ixz="-0.00039322246" iyx="-0.00079781067" iyy="0.10885465" iyz="0.0070770117" izx="-0.00039322246" izy="0.0070770117" izz="0.041871103" />
         </inertial>
+        -->
     </link>
     </xacro:macro>
 
-    <xacro:macro name="ankle_lateral_link" params="prefix reflect x_offset y_offset z_offset">
+    <xacro:macro name="ankle_lateral_link" params="prefix reflect x_offset y_offset z_offset *inertial">
     <link name="${prefix}_ankle_lateral_link">
         <visual>
             <default_geometry cad_file="BPF-BU"/>
@@ -333,11 +365,14 @@
                 <box size="0.0405 0.029 0.083"/>
             </geometry>
         </collision>
+        <xacro:insert_block name="inertial" />
+        <!--
         <inertial>
             <origin xyz="-0.025995 -0.009506 -0.000503" />
             <mass value="0.0794462"/>
             <inertia ixx="0.12079175"  ixy="-0.00079781067"  ixz="-0.00039322246" iyx="-0.00079781067" iyy="0.10885465" iyz="0.0070770117" izx="-0.00039322246" izy="0.0070770117" izz="0.041871103" />
         </inertial>
+        -->
     </link>
     </xacro:macro> 
 
@@ -363,11 +398,14 @@
                 <box size="0.052 0.039 0.036"/>
             </geometry>
         </collision>
+        <xacro:shoulder_right_inertial/>
+        <!--
         <inertial>
             <origin xyz="-0.013522619 0.010264050 0.0013935747"/>
             <mass value="0.025913024"/>
             <inertia  ixx="0.0097758165" ixy="0.0016911839"  ixz="-0.0016911839"  iyy="0.010511104"  iyz="0.00033406955"  izz="0.005476798"/>
         </inertial>
+        -->
     </link>
 
     <!-- Torso to left shoulder -->
@@ -383,11 +421,14 @@
                 <box size="0.052 0.039 0.036"/>
             </geometry>
         </collision>
+        <xacro:shoulder_left_inertial/>
+        <!--
         <inertial>
             <origin xyz="-0.013522619 0.010264050 0.0013935747"/>
             <mass value="0.025913024"/>
             <inertia  ixx="0.0097758165" ixy="0.0016911839"  ixz="-0.0016911839"  iyy="0.010511104"  iyz="0.00033406955"  izz="0.005476798"/>
         </inertial>
+        -->
     </link>
 
     <!-- Right shoulder to upper arm -->
@@ -425,11 +466,14 @@
                 <box size="0.047 0.033 0.052"/>
             </geometry>
         </collision>
+        <xacro:upperarm_right_inertial/>
+        <!--
         <inertial>
-      <origin xyz="-0.036239 0.000734 -0.000660" />
-      <mass value="0.16837715"/>
-      <inertia ixx="0.12202839"  ixy="-0.0020812626"  ixz="-0.00088143449" iyx="-0.0020812626" iyy="0.038088441" iyz="0.0018251448" izx="-0.00088143449" izy="0.0018251448" izz="0.11340830" />
+      	<origin xyz="-0.036239 0.000734 -0.000660" />
+      	<mass value="0.16837715"/>
+      	<inertia ixx="0.12202839"  ixy="-0.0020812626"  ixz="-0.00088143449" iyx="-0.0020812626" iyy="0.038088441" iyz="0.0018251448" izx="-0.00088143449" izy="0.0018251448" izz="0.11340830" />
         </inertial>
+        -->
     </link>
 
     <!-- Left shoulder to upper arm -->
@@ -467,11 +511,14 @@
                 <box size="0.047 0.033 0.052"/>
             </geometry>
         </collision>
+        <xacro:upperarm_left_inertial/>
+        <!--
         <inertial>
-      <origin xyz="-0.036239 0.000734 -0.000660" />
-      <mass value="0.16837715"/>
-      <inertia ixx="0.12202839"  ixy="-0.0020812626"  ixz="-0.00088143449" iyx="-0.0020812626" iyy="0.038088441" iyz="0.0018251448" izx="-0.00088143449" izy="0.0018251448" izz="0.11340830" />
+      	<origin xyz="-0.036239 0.000734 -0.000660" />
+      	<mass value="0.16837715"/>
+      	<inertia ixx="0.12202839"  ixy="-0.0020812626"  ixz="-0.00088143449" iyx="-0.0020812626" iyy="0.038088441" iyz="0.0018251448" izx="-0.00088143449" izy="0.0018251448" izz="0.11340830" />
         </inertial>
+        -->
     </link>
 
     <!-- Right upper arm to lower arm -->
@@ -500,11 +547,14 @@
                 <box size="0.058 0.033 0.044"/>
             </geometry>
         </collision>
+        <xacro:lowerarm_right_inertial/>
+        <!--
         <inertial>
             <origin xyz="0.000000 0.000000 0.000000" />
             <mass value="0.059288504"/>
             <inertia ixx="0.086855267"  ixy="0.0053020311"  ixz="0.00043636051" iyx="0.0053020311" iyy="0.021192085" iyz="-0.0064855932" izx="0.00043636051" izy="-0.0064855932" izz="0.086845450" />
         </inertial>
+        -->
     </link>
 
     <!-- Left upper arm to lower arm -->
@@ -533,11 +583,14 @@
                 <box size="0.058 0.033 0.044"/>
             </geometry>
         </collision>
+        <xacro:upperarm_left_inertial/>
+        <!--
         <inertial>
             <origin xyz="0.000000 0.000000 0.000000" />
             <mass value="0.059288504"/>
             <inertia ixx="0.086855267"  ixy="0.0053020311"  ixz="0.00043636051" iyx="0.0053020311" iyy="0.021192085" iyz="-0.0064855932" izx="0.00043636051" izy="-0.0064855932" izz="0.086845450" />
         </inertial>
+        -->
     </link>
 
     <!-- Right lower arm to hand -->
@@ -559,11 +612,14 @@
                 <box size="0.0575 0.0175 0.035"/>
             </geometry>
         </collision>
+        <xacro:arm_right_inertial/>
+        <!--
         <inertial>
             <origin xyz="0.045838 -0.013490 0.006666"/>
             <mass value="0.010"/>
             <inertia ixx="0.12202839"  ixy="-0.0020812626"  ixz="-0.00088143449" iyx="-0.0020812626" iyy="0.038088441" iyz="0.0018251448" izx="-0.00088143449" izy="0.0018251448" izz="0.11340830" />
         </inertial>
+        -->
     </link>
 
     <!-- Left lower arm to hand -->
@@ -585,11 +641,14 @@
                 <box size="0.0575 0.0175 0.035"/>
             </geometry>
         </collision>
+        <xacro:arm_left_inertial/>
+        <!--
         <inertial>
             <origin xyz="0.045838 -0.013490 0.006666"/>
             <mass value="0.010"/>
             <inertia ixx="0.12202839"  ixy="-0.0020812626"  ixz="-0.00088143449" iyx="-0.0020812626" iyy="0.038088441" iyz="0.0018251448" izx="-0.00088143449" izy="0.0018251448" izz="0.11340830" />
         </inertial>
+        -->
     </link>
 
     <!-- Torso to right hip twist -->
@@ -602,12 +661,16 @@
 
     <!-- Right hip twist to hip lateral -->
     <xacro:hip_lateral_joint prefix="r" reflect="1"/>
-    <xacro:hip_lateral_link prefix="r" reflect="1" x_offset="0" y_offset="0" z_offset="0.0353"/>
+    <xacro:hip_lateral_link prefix="r" reflect="1" x_offset="0" y_offset="0" z_offset="0.0353">
+    	<xacro:hip_right_inertial/>
+    </xacro:hip_lateral_link>
 
     <!-- Left hip twist to hip lateral -->
     <xacro:hip_lateral_joint prefix="l" reflect="-1"/>
-    <xacro:hip_lateral_link prefix="l" reflect="-1" x_offset="0" y_offset="0" z_offset="0.0353"/>
-
+    <xacro:hip_lateral_link prefix="l" reflect="-1" x_offset="0" y_offset="0" z_offset="0.0353">
+		<xacro:hip_left_inertial/>
+    </xacro:hip_lateral_link>
+    
     <!-- Right hip lateral to upper leg -->
     <xacro:hip_swing_joint prefix="r" reflect="1"/>
     <xacro:upper_leg_link prefix="r" reflect="1" x_offset="0" y_offset="0" z_offset="0"/>
@@ -618,27 +681,39 @@
 
     <!-- Right upper leg to lower leg -->
     <xacro:knee_joint prefix="r" reflect="1"/>
-    <xacro:lower_leg_link prefix="r" reflect="1" x_offset="0" y_offset="0" z_offset="0"/>
-
+    <xacro:lower_leg_link prefix="r" reflect="1" x_offset="0" y_offset="0" z_offset="0">
+    	<xacro:tibia_right_inertial/>
+    </xacro:lower_leg_link>
+    
     <!-- Left upper leg to lower leg -->
     <xacro:knee_joint prefix="l" reflect="-1"/>
-    <xacro:lower_leg_link prefix="l" reflect="-1" x_offset="0" y_offset="0" z_offset="0"/>
+    <xacro:lower_leg_link prefix="l" reflect="-1" x_offset="0" y_offset="0" z_offset="0">
+    	<xacro:tibia_left_inertial/>
+    </xacro:lower_leg_link>
 
     <!-- Right lower leg to ankle swing -->
     <xacro:ankle_swing_joint prefix="r" reflect="1"/>
-    <xacro:ankle_swing_link prefix="r" reflect="1" x_offset="0" y_offset="0" z_offset="0"/>
+    <xacro:ankle_swing_link prefix="r" reflect="1" x_offset="0" y_offset="0" z_offset="0">
+    	<xacro:ankle_right_inertial/>
+    </xacro:ankle_swing_link>
 
     <!-- Left lower leg to ankle swing -->
     <xacro:ankle_swing_joint prefix="l" reflect="-1"/>
-    <xacro:ankle_swing_link prefix="l" reflect="-1" x_offset="0" y_offset="0" z_offset="0"/>
+    <xacro:ankle_swing_link prefix="l" reflect="-1" x_offset="0" y_offset="0" z_offset="0">
+    	<xacro:ankle_left_inertial/>
+    </xacro:ankle_swing_link>
 
     <!-- Right ankle swing to ankle lateral -->
     <xacro:ankle_lateral_joint prefix="r" reflect="1"/>
-    <xacro:ankle_lateral_link prefix="r" reflect="1" x_offset="0" y_offset="0" z_offset="0"/>
+    <xacro:ankle_lateral_link prefix="r" reflect="1" x_offset="0" y_offset="0" z_offset="0">
+    	<xacro:foot_right_inertial/>
+    </xacro:ankle_lateral_link>
 
     <!-- Left ankle swing to ankle lateral -->
     <xacro:ankle_lateral_joint prefix="l" reflect="-1"/>
-    <xacro:ankle_lateral_link prefix="l" reflect="-1" x_offset="0" y_offset="0" z_offset="0"/>
+    <xacro:ankle_lateral_link prefix="l" reflect="-1" x_offset="0" y_offset="0" z_offset="0">
+    	<xacro:foot_left_inertial/>
+    </xacro:ankle_lateral_link>
 
     <!-- Right ankle lateral to foot -->
     <xacro:foot_joint prefix="r"/>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<!--Inertial properties Torso torso -->
+<xacro:macro name="torso_inertial">
+	<inertial>
+		<mass value="0.6954053293"/>
+		<origin xyz="0.0171121538 0.0052995599 0.0016431550" />
+		<inertia ixx="10.9003247826" ixy="0.7020020095" ixz="-1.0245344637"
+				iyy="10.6912796312" iyz="0.0302048573"
+				izz="10.3158095391"/>
+	</inertial>
+</xacro:macro>
+
+</robot>

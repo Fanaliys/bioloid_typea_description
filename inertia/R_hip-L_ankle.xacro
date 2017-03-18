@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<!--Inertial properties R_hip-L_ankle ankle_left -->
+<xacro:macro name="ankle_left_inertial">
+	<inertial>
+		<mass value="0.1370485873"/>
+		<origin xyz="0.0175503800 0.0000382013 -0.0012148213" />
+		<inertia ixx="0.1126701697" ixy="-0.0091785729" ixz="-0.0436618956"
+				iyy="0.9538828186" iyz="-0.0012283871"
+				izz="0.9645318393"/>
+	</inertial>
+</xacro:macro>
+
+<!--Inertial properties R_hip-L_ankle hip_right -->
+<xacro:macro name="hip_right_inertial">
+	<inertial>
+		<mass value="0.1370485873"/>
+		<origin xyz="0.0175503800 -0.0000382013 0.0012148213" />
+		<inertia ixx="0.1126701697" ixy="0.0091785729" ixz="0.0436618956"
+				iyy="0.9538828186" iyz="-0.0012283871"
+				izz="0.9645318393"/>
+	</inertial>
+</xacro:macro>
+
+</robot>

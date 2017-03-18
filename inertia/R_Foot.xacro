@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<!--Inertial properties R_Foot foot_right -->
+<xacro:macro name="foot_right_inertial">
+	<inertial>
+		<mass value="0.0373560220"/>
+		<origin xyz="-0.0055676472 0.0034398816 0.0028465215" />
+		<inertia ixx="0.1234423088" ixy="-0.0133733804" ixz="-0.0140420399"
+				iyy="0.3516093267" iyz="0.0115251052"
+				izz="0.4110130747"/>
+	</inertial>
+</xacro:macro>
+
+</robot>
