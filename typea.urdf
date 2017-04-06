@@ -9,6 +9,14 @@
       <robotNamespace>/typea</robotNamespace>
       <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
     </plugin>
+    <plugin filename="libgazebo_ros_imu.so" name="imu_plugin">
+      <alwaysOn>true</alwaysOn>
+      <bodyName>imu_link</bodyName>
+      <topicName>imu</topicName>
+      <serviceName>imu_service</serviceName>
+      <gaussianNoise>0.0</gaussianNoise>
+      <updateRate>20.0</updateRate>
+    </plugin>
   </gazebo>
   <transmission name="r_shoulder_swing_joint_tran">
     <type>transmission_interface/SimpleTransmission</type>
