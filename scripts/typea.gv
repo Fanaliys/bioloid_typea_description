@@ -1,6 +1,5 @@
 digraph G {
 node [shape=box];
-"imu_link" [label="imu_link"];
 "base_link" [label="base_link"];
 "torso_link" [label="torso_link"];
 "l_hip_twist_link" [label="l_hip_twist_link"];
@@ -25,9 +24,8 @@ node [shape=box];
 "r_upper_arm_link" [label="r_upper_arm_link"];
 "r_lower_arm_link" [label="r_lower_arm_link"];
 "r_hand_link" [label="r_hand_link"];
+"imu_link" [label="imu_link"];
 node [shape=ellipse, color=blue, fontcolor=blue];
-"imu_link" -> "imu_to_base_joint" [label="xyz: 0.01 0 0.0788 \nrpy: 0 -0 0"]
-"imu_to_base_joint" -> "base_link"
 "base_link" -> "base_to_torso_joint" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
 "base_to_torso_joint" -> "torso_link"
 "torso_link" -> "l_hip_twist_joint" [label="xyz: 0 0.0385 -0.0655 \nrpy: 3.14159 -2.06823e-13 1.5708"]
@@ -74,4 +72,6 @@ node [shape=ellipse, color=blue, fontcolor=blue];
 "r_elbow_joint" -> "r_lower_arm_link"
 "r_lower_arm_link" -> "r_hand_joint" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
 "r_hand_joint" -> "r_hand_link"
+"base_link" -> "imu_to_base_joint" [label="xyz: 0 0 0.05 \nrpy: 0 -0 0"]
+"imu_to_base_joint" -> "imu_link"
 }

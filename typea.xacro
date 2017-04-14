@@ -42,12 +42,14 @@
 
     <!-- IMU -->
     <joint name="imu_to_base_joint" type="fixed">
-        <parent link="imu_link"/>
-        <origin xyz="0.01 0 0.0788" rpy="0 0 0"/>
-        <child link="base_link"/>
+        <axis xyz="1 0 0"/>
+        <origin xyz="0 0 0.05" rpy="0 0 0"/>
+        <parent link="base_link"/>
+        <child link="imu_link"/>
     </joint>
     <link name="imu_link">
         <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
                 <box size="0.04 0.02 0.005"/>
             </geometry>
@@ -55,11 +57,17 @@
                 <color rgba="0.0 1.0 0.0 1.0"/>
             </material>
         </visual>
-        <!--<inertial>
-            <origin xyz="0 0 0"/>
-            <mass value="1.0"/>
-            <inertia  ixx="0.001" ixy="0.0"  ixz="0.0"  iyy="0.001"  iyz="0.0"  izz="0.001"/>
-        </inertial>-->
+          <collision>
+	    <origin rpy="0 0 0" xyz="0 0 0"/>
+	        <geometry>
+	        <box size=".01 .01 .01"/>
+	        </geometry>
+	    </collision>
+	  <inertial>
+	    <mass value="0.001"/>
+	    <origin rpy="0 0 0" xyz="0 0 0"/>
+	    <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.0001"/>
+	  </inertial>
     </link>
 
 
