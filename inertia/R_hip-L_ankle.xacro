@@ -4,22 +4,22 @@
 <!--Inertial properties R_hip-L_ankle ankle_left -->
 <xacro:macro name="ankle_left_inertial">
 	<inertial>
-		<mass value="0.1370485873"/>
-		<origin xyz="0.0175503800 0.0000382013 -0.0012148213" />
-		<inertia ixx="0.1126701697" ixy="-0.0091785729" ixz="-0.0436618956"
-				iyy="0.9538828186" iyz="-0.0012283871"
-				izz="0.9645318393"/>
+		<mass value="0.6852429363"/>
+		<origin xyz="0.0167509278 0.0033519500 -0.0035241956" />
+		<inertia ixx="0.0160687475" ixy="0.0135264586" ixz="-0.0142999521"
+				iyy="0.0903445586" iyz="-0.0025649497"
+				izz="0.0920435080"/>
 	</inertial>
 </xacro:macro>
 
 <!--Inertial properties R_hip-L_ankle hip_right -->
 <xacro:macro name="hip_right_inertial">
 	<inertial>
-		<mass value="0.1370485873"/>
-		<origin xyz="0.0175503800 -0.0000382013 0.0012148213" />
-		<inertia ixx="0.1126701697" ixy="0.0091785729" ixz="0.0436618956"
-				iyy="0.9538828186" iyz="-0.0012283871"
-				izz="0.9645318393"/>
+		<mass value="0.6852429363"/>
+		<origin xyz="0.0167509278 -0.0033519500 0.0035241956" />
+		<inertia ixx="0.0160687475" ixy="-0.0135264586" ixz="0.0142999521"
+				iyy="0.0903445586" iyz="-0.0025649497"
+				izz="0.0920435080"/>
 	</inertial>
 </xacro:macro>
 

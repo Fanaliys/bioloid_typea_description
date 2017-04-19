@@ -4,11 +4,11 @@
 <!--Inertial properties Torso torso -->
 <xacro:macro name="torso_inertial">
 	<inertial>
-		<mass value="0.6954053293"/>
-		<origin xyz="0.0171121538 0.0052995599 0.0016431550" />
-		<inertia ixx="10.9003247826" ixy="0.7020020095" ixz="-1.0245344637"
-				iyy="10.6912796312" iyz="0.0302048573"
-				izz="10.3158095391"/>
+		<mass value="3.4770266466"/>
+		<origin xyz="0.0162019036 0.0049844800 0.0038595353" />
+		<inertia ixx="0.9787053684" ixy="0.0543464614" ixz="-0.0262073548"
+				iyy="0.9730952674" iyz="0.0198675713"
+				izz="0.9352573858"/>
 	</inertial>
 </xacro:macro>
 
