@@ -2,7 +2,7 @@
   <arg name="standalone" default="false"/>
   <arg name="noimu" default="true"/>
 
-  <param name="robot_description" textfile="$(find bioloid_typea_description)/typea.urdf" />
+  <param name="robot_description" textfile="typea.urdf" />
 
   <!-- send fake joint values if we run RVIZ standalone -->
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">

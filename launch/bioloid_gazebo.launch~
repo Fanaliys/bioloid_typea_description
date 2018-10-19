@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<launch>
+ <arg name="name" default="bioloid"/>
+ <arg name="model" default="$(find bioloid_typea_description-master/gazebo.xacro"/>
+ <arg name="x" default="0.0"/>
+ <arg name="y" default="0.0"/>
+ <arg name="z" default="0.22"/>
+ <arg name="world_frame" default="world"/>
+
+   <param name="robot_description"
+    command="$(find xacro)/xacro --inorder '$(find bioloid_typea_description)/typea.xacro'" />
+
+ <include file="$(find gazebo_ros)/launch/empty_world.launch">
+  <arg name="world_name" value="worlds/empty.world"/>
+  <arg name="paused" value="true"/>
+  <arg name="gui" value="true"/>
+  <arg name="use_sim_time" value="true"/>
+  <arg name="headless" value="false"/>
+  <arg name="debug" value="false"/>
+
+ </include>
+
+ 
+ <node name="spawn_robot" pkg="gazebo_ros" type="spawn_model"
+       args="-param robot_description
+             -urdf
+             -x $(arg x)
+             -y $(arg y)
+             -z $(arg z)
+             -model $(arg name)"
+          respawn="false" output="screen"/>
+
+ <node name="darwin_walker" pkg="darwin_gazebo" type="walker.py" />
+
+</launch>
